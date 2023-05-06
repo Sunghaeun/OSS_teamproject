@@ -1,11 +1,16 @@
 #include <stdio.h>
 
 typedef struct{
+  
+}seat;
+
+typedef struct{
   char name[20];
   int time;
-  int seat; //일단 이렇게 했으니까 너가 만들때 편하게 바꿔
+  seat s; 
 
 }user;
+
 void seat_create();
 void seat_read();
 void seat_change();
@@ -15,6 +20,8 @@ void timeAdd();
 void orderFood();
 void report_seat();
 void event();
+void file_store();
+int file_import();
 
 int main(void) {
   
@@ -30,3 +37,5 @@ void timeAdd(){}
 void orderFood(){}
 void report_seat(){}
 void event(){}
+void file_store(){}
+int file_import(){}
