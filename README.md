@@ -1,6 +1,6 @@
 # OSS_teamproject
 
-팀프로젝트 주졔: PC방 예약 시스템
+팀프로젝트 주제: PC방 예약 시스템
 
 
 1. Create 자리 생성
