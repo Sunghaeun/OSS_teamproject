@@ -3,7 +3,7 @@
 typedef struct{
   char name[20];
   int time;
-  int seat;
+  int seat; //일단 이렇게 했으니까 너가 만들때 편하게 바꿔
 
 }user;
 void seat_create();
@@ -14,6 +14,7 @@ void searchName();
 void timeAdd();
 void orderFood();
 void report_seat();
+void event();
 
 int main(void) {
   
@@ -28,3 +29,4 @@ void searchName(){}
 void timeAdd(){}
 void orderFood(){}
 void report_seat(){}
+void event(){}
