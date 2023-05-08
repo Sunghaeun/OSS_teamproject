@@ -36,9 +36,12 @@ void seat_change(){
 }
 void seat_delete(){
 }
-void searchName(){}
-void timeAdd(){}
-void orderFood(){}
+void searchName(){
+}
+void timeAdd(){
+}
+void orderFood(){
+}
 void report_seat(){}
 void event(){}
 void file_store(){}
