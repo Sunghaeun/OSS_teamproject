@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 typedef struct{
-  
+
 }seat;
 
 typedef struct{
