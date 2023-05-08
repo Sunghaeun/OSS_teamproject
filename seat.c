@@ -8,7 +8,6 @@ typedef struct{
   char name[20];
   int time;
   seat s; 
-
 }user;
 
 void seat_create();
