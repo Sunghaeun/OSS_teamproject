@@ -45,6 +45,7 @@ void orderFood(){
 void report_seat(){
 }
 void event(){
+  
 }
 void file_store(){
 }
