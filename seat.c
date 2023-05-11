@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 typedef struct{
-
+//내용 구현 적기
 }seat;
 
 typedef struct{
