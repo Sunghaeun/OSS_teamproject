@@ -28,6 +28,7 @@ int main(void) {
   return 0;
 }
 
+
 void seat_create(){
 }
 void seat_read(){
