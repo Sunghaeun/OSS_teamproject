@@ -31,6 +31,7 @@ int main(void){
         }
         printf("\n");
     }
+    //외쪽 세로의 마지막 칸
     for(int i=0;i<8;i++){
             if(i%5==0) printf("|");
             if(i%5==3) printf("%d",++seat_n);
