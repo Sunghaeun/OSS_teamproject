@@ -2,7 +2,7 @@
 
 int main(void){
     int seat_n=0;
-    //첫째줄 시작
+    //첫째줄 시작 
     for(int i=0;i<36;i++){
         printf("-");
     }
