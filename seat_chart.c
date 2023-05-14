@@ -7,12 +7,14 @@ int main(void){
         printf("-");
     }
     printf("\n");
+    
     for(int i=0;i<27;i++){
         if(i%5==0) printf("|");
         if(i%5==3) printf("%d",++seat_n);
         printf(" ");
     }
     printf("\n");
+    
     for(int i=0;i<36;i++){
         printf("-");
     }
