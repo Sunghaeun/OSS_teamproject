@@ -21,6 +21,7 @@ void report_seat();
 void event();
 void file_store();
 int file_import();
+int start();
 
 int main(void) {
   
@@ -50,4 +51,8 @@ void event(){
 void file_store(){
 }
 int file_import(){
+}
+int start(){
+ printf("*******oss피시방*******\n");
+  printf("");
 }
