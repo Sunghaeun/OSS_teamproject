@@ -24,7 +24,50 @@ int file_import();
 int start();
 
 int main(void) {
+  file_import();
   
+  int menu = start();
+  
+  which(menu){
+    case 0: 
+      file_store();
+      return 0;
+    
+    case 1:
+      seat_create();
+      break;
+    
+    case 2:
+      seat_read();
+      break;
+    
+    case 3:
+      seat_change();
+      break;
+    
+    case 4:
+      seat_delete();
+      break;
+    
+    case 5:
+      searchName();
+      break;
+    
+    case 6:
+      timeAdd();
+      break;
+    
+    case 7:
+      orderFood();
+      break;
+    
+    case 8:
+      report_seat();
+      break;
+    
+    default:
+     break;
+  }
   return 0;
 }
 
@@ -75,8 +118,16 @@ Delete 자리삭제
   printf("6. 시간 추가\n");
   printf("7. 음식 주문\n");
   printf("8. 고장난 자리 신고\n");
+  printf("0. 종료\n");
   printf(">> ");
   
   scanf("%d", &num);
   
+  while(num<0||num>8){
+    printf("메뉴에 없는 번호 입니다. 다시 입력하세요\n");
+    printf(">> ");
+    scanf("%d", &num);
+  }
+  
+  return num;
 }
