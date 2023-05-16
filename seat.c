@@ -1,10 +1,6 @@
 #include <stdio.h>
 
 typedef struct{
-//내용 구현 적기
-}seat;
-
-typedef struct{
   char name[20];
   int time;
   seat s; 
