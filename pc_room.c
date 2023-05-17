@@ -6,7 +6,7 @@
 int main(void) {
   file_import();
   
-  int menu = start();
+  int menu = menu();
   while(1){
     which(menu){
       case 0: 
