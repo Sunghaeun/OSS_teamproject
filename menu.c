@@ -37,3 +37,40 @@ Delete 자리삭제
   
   return num;
 }
+
+
+// 참고 코드
+/*
+int selectMenu(){
+    int menu;
+    printf("\n*** 제품 관리 ***\n");
+    printf("1. 조회\n");
+    printf("2. 추가\n"); 
+    printf("3. 수정\n");
+    printf("4. 삭제\n");
+    printf("5. 저장\n");
+    printf("0. 종료\n\n");
+    printf("=> 원하는 메뉴는? ");
+    scanf("%d", &menu);
+    return menu;
+}
+void listProduct(Product *p,int count){
+
+    printf("\nNo. Name          weight price\n");
+    printf("================================\n");
+    for(int i=0; i<count; i++){
+        if( p[i].weight == -1 || p[i].price == -1 ) continue;
+        printf("%2d.", i+1);
+        readProduct(&p[i]);
+    }
+    printf("\n");
+}
+
+int selectDataNo(Product *p, int count){
+    int no;
+    listProduct(p,count);
+    printf("번호는 (취소:0)?");
+    scanf("%d",&no);
+    getchar();
+    return no;
+}*/
