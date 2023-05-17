@@ -7,7 +7,7 @@ typedef struct{
   int seat[10]={0}; 
 }user;
 
-void seat_create();
-void seat_read();
-void seat_change();
-void seat_delete();
+void seat_create(user *u);
+void seat_read(user *u);
+void seat_change(user *u);
+void seat_delete(user *u);
