@@ -1,5 +1,5 @@
 //crud기능
-#include "CRUD.h"
+#include "CRUD.h" 
 
 void seat_create(user *u){
     printf("이름을 입력하세요. ");
