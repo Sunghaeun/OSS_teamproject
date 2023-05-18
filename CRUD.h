@@ -4,7 +4,7 @@
 typedef struct{
   char name[20];
   int time;
-  int seat=0; 
+  int seat=0; //수정 논의중
 }user;
 
 void seat_create(user *u);
