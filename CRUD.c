@@ -15,7 +15,7 @@ void seat_create(user *u){
 }
 
 void seat_read(user *u){
-     printf("%-5s %3d원\n",u->name,u->time);
+     printf("%-6s %3d원\n",u->name,u->time);
 }
 
 void seat_change(user *u){
