@@ -17,7 +17,7 @@ void report_seat();
 void event();
 void file_store();
 int file_import();
-int start();
+int menu();
 
 int main(void) {
   file_import();
@@ -91,7 +91,7 @@ void file_store(){
 }
 int file_import(){
 }
-int start(){
+int menu(){
   /*Create 자리 생성
 들어가면 잔여 좌석 바로 보이도록 (반복문으로 생성)
 들어가야 할 내용: 이름, 사용시간, 자리선택
