@@ -14,15 +14,15 @@ int main(void) {
         return 0;
 
       case 1:
-        seat_create();
+        seat_create(user *u);
         break;
 
       case 2:
-        seat_read();
+        seat_read(user *u);
         break;
 
       case 3:
-        seat_change();
+        seat_change(user *u);
         break;
 
       case 4:
