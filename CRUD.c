@@ -65,7 +65,7 @@ int seat_create(user *u){
     printf("이름을 입력하세요. ");
     scanf("%s",&u->name);
 
-    printf("이용시간을 입력하세요. ");
+    printf("이용시간을 입력하세요.(시간) ");
     scanf("%d",&u->time);
     
     u->seat=1;
