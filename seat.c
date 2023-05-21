@@ -1,4 +1,3 @@
-/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -115,12 +114,12 @@ void seat_change(user *u){
     printf("==> 수정되었습니다!\n");
 }
 
-/*void seat_delete(user *u){
+void seat_delete(user *u){
     u->time=-1;
     u->seat=0;
     printf("==> 삭제되었습니다!\n");
     return 0;
-}*/
+}
 
 void searchName(){
 
@@ -236,4 +235,4 @@ int main(void) {
   return 0; 
 }
 
-*/
+
