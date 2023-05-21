@@ -69,7 +69,7 @@ int seat_create(user *u){
     scanf("%d",&u->time);
     
     u->seat=1;
-     
+    
     printf("==> 추가되었습니다!\n"); 
     return 1;
 }
