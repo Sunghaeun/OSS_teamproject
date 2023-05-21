@@ -10,6 +10,12 @@ typedef struct{
   //좋아하는 게임 장르나 나이를 입력 받아서 10시 이후까지 이용 예정이라면 금지 메세지 띄우기
 }user;
 
+typedef struct{
+  char name[20];
+  int time;
+  char food[20];
+}seat;
+
 void seating_sheat(user u){
     int seat_n=0;
     //첫째줄 시작
