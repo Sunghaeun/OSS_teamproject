@@ -69,6 +69,10 @@ int seat_create(user *u){
     scanf("%d",&u->time);
     
     u->seat=1;
+ 
+ if(&u->time > 120){
+  event();
+ }
     
     printf("==> 추가되었습니다!\n"); 
     return 1;
