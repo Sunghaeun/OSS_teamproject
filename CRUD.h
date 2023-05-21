@@ -5,7 +5,9 @@ typedef struct{
   char name[20];
   int time;
   int seat=0;
-}user;
+  char food[20];
+  //좋아하는 게임 장르나 나이를 입력 받아서 10시 이후까지 이용 예정이라면 금지 메세지 띄우기
+}user; 
 
 void seat_create(user *u);
 void seat_read(user u);
