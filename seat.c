@@ -88,14 +88,12 @@ void seating_sheat(seat u) {
   printf("\n");
 }
 
-int seat_create(user *u) {
+int seat_create(seat *u) {
   printf("이름을 입력하세요. ");
   scanf("%s", &u->name);
 
   printf("이용시간을 입력하세요. ");
   scanf("%d", &u->time);
-
-  u->seat = 1;
 
   printf("==> 추가되었습니다!\n");
   return 1;
@@ -133,12 +131,11 @@ void seat_change(seat *u) {
 
 void seat_delete(seat *u) {
   u->time = -1;
-  u->seat = 0;
   printf("==> 삭제되었습니다!\n");
   return 0;
 }
 
-void searchName(user *u[], int count) {
+void searchName(seat *u[], int count) {
   char name[20];
   printf("찾으시는 사용자의 이름을 입력하세요: ");
   scanf("%s", name);
@@ -160,7 +157,7 @@ void searchName(user *u[], int count) {
   }
 }
 
-void timeAdd(user *u[], int count) {
+void timeAdd(seat *u[], int count) {
   int seatNo;
   printf("이용시간을 추가할 사용자의 좌석 번호를 입력하세요: ");
   scanf("%d", &seatNo);
@@ -205,9 +202,9 @@ void orderFood(seat *u[], int count) {
 
   int food = foodMenu();
 
-  u[seatNo - 1]->food = food
+  u[seatNo - 1]->food = food;
 
-      printf("음식이 주문되었습니다!\n");
+  printf("음식이 주문되었습니다!\n");
 }
 
 void report_seat() {}
