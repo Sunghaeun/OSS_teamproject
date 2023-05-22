@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
 #include "menu.h"
-#include "other.h"
-#include "CRUD.h"
+#include "function.h"
 //main 함수
 int main(void) {
   int result = 0;
