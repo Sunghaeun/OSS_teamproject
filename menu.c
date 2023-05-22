@@ -5,7 +5,7 @@ int selectMenu() {
   int menu;
   printf("\n*** 점수계산기 ***\n");
   printf("1. 로그인C\n");
-  printf("2. 남은자리조회R\n");
+  printf("2. 정보조회R\n");
   printf("3. 자리이동U\n");
   printf("4. 로그아웃D\n");
   printf("5. 이름검색\n");
