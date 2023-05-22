@@ -7,7 +7,7 @@ typedef struct {
   int seat;
   int food[20];
 } schedule;
-
+void seating_sheet(schedule *u[]);
 int addScore(schedule *s, int pc_seat[]);
 void readScore(schedule s);
 void listScore2(schedule *s[], int count);
