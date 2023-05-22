@@ -206,39 +206,6 @@ int selectDataNo2(schedule *s[], int count) {
   return no;
 }
 
-void saveData(schedule *s[], int count) {
-  FILE *fp;
-  fp = fopen("test.txt", "wt");
-  for (int i = 0; i < count; i++) {
-    if (s[i]->time == -1)
-      continue;
-    fprintf(fp, "%s %d\n", s[i]->name, s[i]->time);
-  }
-  fclose(fp);
-  printf("=> 저장됨!\n");
-}
-
-int loadData(schedule *s[]) {
-  int count = 0, i = 0;
-  FILE *fp;
-  fp = fopen("test.txt", "rt");
-  for (int i = 0; i < 100; i++) {
-    s[i] = (schedule *)malloc(sizeof(schedule));
-    if (feof(fp))
-      break;
-    fscanf(fp, "%s", s[i]->name);
-    fscanf(fp, "%d", &s[i]->time);
-    count++;
-  }
-  if (count == 1) {
-    printf("=> 파일없음\n");
-  } else
-    printf("=> 로딩 성공! \n");
-  fclose(fp);
-
-  return i;
-}
-
 void searchFriend(schedule *s[], int count) {
   int scnt = 0;
   char search[20];
