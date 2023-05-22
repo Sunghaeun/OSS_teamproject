@@ -170,6 +170,20 @@ void timeAdd(user *u[], int count) {
   printf("이용시간이 추가되었습니다!\n");
 }
 
+int foodmenu(){
+ int num;
+  
+  printf("*******oss피시방*******\n");
+  printf("1. 로그인C\n");
+  printf("2. 남은자리R\n");
+  printf("3. 자리이동U\n");
+  printf("4. 로그아웃D\n");
+  printf("5. 이름검색\n");
+  printf("6. 시간 추가\n");
+  
+  return num;
+}
+
 void orderFood(user *u[], int count) {
   int seatNo;
   printf("음식을 주문할 사용자의 좌석 번호를 입력하세요: ");
