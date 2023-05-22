@@ -229,7 +229,7 @@ int selectMenu(){
 int main(void) {
   int count=0, menu;
 
-    user *u[100];
+    seat *u[100];
     int index=0;
 
     //count = file_load(u);
