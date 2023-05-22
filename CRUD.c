@@ -1,5 +1,80 @@
 //crud기능
 #include "CRUD.h" 
+void seating_sheet(schedule *u[]) {
+  int seat_n = 0;
+  int check = 0;
+  // 첫째줄 시작
+  for (int i = 0; i < 36; i++) {
+    printf("-");
+  }
+  printf("\n");
+  for (int i = 0; i < 27; i++) {
+    if (i % 5 == 0)
+      printf("|");
+    if (i % 5 == 3) {
+      seat_n++;
+      printf("%d", seat_n);
+    }
+    printf(" ");
+  }
+  printf("\n");
+  for (int i = 0; i < 36; i++) {
+    printf("-");
+  }
+  // 첫째줄 끝
+  printf("\n");
+  // 왼쪽 세로 시작
+  for (int j = 0; j < 2; j++) {
+    for (int i = 0; i < 8; i++) {
+      if (i % 5 == 0)
+        printf("|");
+      if (i % 5 == 3) {
+        seat_n++;
+        
+        printf("%d", seat_n);
+      }
+      printf(" ");
+    }
+    printf("\n");
+    for (int i = 0; i < 8; i++) {
+      printf("-");
+    }
+    printf("\n");
+  }
+  for (int i = 0; i < 8; i++) {
+    if (i % 5 == 0)
+      printf("|");
+    if (i % 5 == 3) {
+      seat_n++;
+      
+        printf("%d", seat_n);
+    }
+    printf(" ");
+  }
+  printf("\n");
+  // 왼쪽 세로 끝
+  for (int i = 0; i < 36; i++) {
+    printf("-");
+  }
+  printf("\n");
+  for (int i = 0; i < 27; i++) {
+    if (i == 2)
+      printf(" ");
+    if (i % 5 == 0)
+      printf("|");
+    if (i % 5 == 2) {
+      seat_n++;
+      
+        printf("%d", seat_n);
+    } else
+      printf(" ");
+  }
+  printf("\n");
+  for (int i = 0; i < 36; i++) {
+    printf("-");
+  }
+  printf("\n");
+}
  
 int addScore(schedule *s, int pc_seat[]) {
   printf("몇번 자리를 선택하시겠습니까? ");
