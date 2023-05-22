@@ -121,10 +121,7 @@ int addScore(schedule *s, int pc_seat[]) {
   printf("시간은? ");
   scanf("%d", &(s->time));
   return 1;
-}
-
-
-  
+}  
   printf("\n이름은? ");
   scanf("%s", s->name);
   printf("시간은? ");
