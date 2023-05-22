@@ -101,6 +101,7 @@ void seating_sheet(schedule *u[]) {
 }
  
 int addScore(schedule *s, int pc_seat[]) {
+  int time;
   do {
     int i=0;
     printf("몇 번 자리를 선택하시겠습니까? ");
@@ -122,8 +123,11 @@ int addScore(schedule *s, int pc_seat[]) {
 
   printf("\n이름은? ");
   scanf("%s", s->name);
-  printf("시간은? ");
+  printf("시간은?(분) ");
   scanf("%d", &(s->time));
+  
+  if(time>180)    s->time += event();
+  
   return 1;
 }
 void readScore(schedule s) {
