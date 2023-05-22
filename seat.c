@@ -385,3 +385,268 @@ int main(void) {
   printf("종료되었습니다!\n");
   return 0;
 }
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct{
+  char name[20];
+  int time;
+  int seat;
+  char food[20];
+  //좋아하는 게임 장르나 나이를 입력 받아서 10시 이후까지 이용 예정이라면 금지 메세지 띄우기
+}seat;
+
+void seating_sheat(seat *u[]){
+    int seat_n=0;
+    int check=0;
+    //첫째줄 시작
+    for(int i=0;i<36;i++){
+        printf("-");
+    }
+    printf("\n");
+    for(int i=0;i<27;i++){
+        if(i%5==0) printf("|");
+        if(i%5==3) {
+          seat_n++;
+          printf("%d",seat_n);
+          }
+        printf(" ");
+    }
+    printf("\n");
+    for(int i=0;i<36;i++){
+        printf("-");
+    }
+    //첫째줄 끝
+    printf("\n");
+    //왼쪽 세로 시작
+    for(int j=0;j<2;j++){
+        for(int i=0;i<8;i++){
+            if(i%5==0) printf("|");
+            if(i%5==3) printf("%d",++seat_n);
+            printf(" ");
+        }
+        printf("\n");
+        for(int i=0;i<8;i++){
+            printf("-");
+        }
+        printf("\n");
+    }
+    for(int i=0;i<8;i++){
+            if(i%5==0) printf("|");
+            if(i%5==3) printf("%d",++seat_n);
+            printf(" ");
+        }
+        printf("\n");
+    //왼쪽 세로 끝
+    for(int i=0;i<36;i++){
+        printf("-");
+    }
+    printf("\n");
+    for(int i=0;i<27;i++){
+        if(i==2) printf(" ");
+        if(i%5==0) printf("|");
+        if(i%5==2) printf("%d",++seat_n);
+        else printf(" ");
+    }
+    printf("\n");
+    for(int i=0;i<36;i++){
+        printf("-");
+    }
+    printf("\n");
+}
+
+int seat_create(seat *u){
+    //printf("ㅎㅎ 팍씨");
+    u->seat=1;
+    printf("이름을 입력하세요. ");
+    scanf("%s",&u->name);
+
+    printf("이용시간을 입력하세요. ");
+    scanf("%d",&u->time);
+     
+    printf("==> 추가되었습니다!\n"); 
+    return 1;
+}
+
+void readScore(seat s){
+    printf("%5s %d\n", s.name,s.time);
+}
+
+
+void listScore2(seat *s[], int count) {
+    printf("\n No 이름  이용시간\n");
+    printf("========================================\n");
+    for (int i = 0; i < count; i++) {
+        if (s[i] == NULL) continue;
+        printf("%2d ", i + 1);
+        readScore(*s[i]);
+    }
+    printf("\n");
+}
+
+void seat_change(seat *u){
+    printf("이름을 입력하세요. ");
+    scanf("%s",&u->name);
+
+    printf("이용시간을 입력하세요. ");
+    scanf("%d",&u->time);
+    
+    printf("==> 수정되었습니다!\n");
+}
+int selectMenu(){
+    int num;
+    
+    printf("*******oss피시방*******\n");
+    printf("1. 로그인C\n");
+    printf("2. 남은자리조회R\n");
+    printf("3. 자리이동U\n");
+    printf("4. 로그아웃D\n");
+    printf("5. 이름검색\n");
+    printf("6. 시간 추가\n");
+    printf("7. 음식 주문\n");
+    printf("8. 고장난 자리 신고\n");
+    printf("9. 자료 저장\n");
+    // 입력받은 좋아하는 장르 기반으로 추천
+    printf("0. 종료\n");
+    printf(">> ");
+    
+    scanf("%d", &num);
+    
+    while(num<0||num>8){
+      printf("메뉴에 없는 번호 입니다. 다시 입력하세요\n");
+      printf(">> ");
+      scanf("%d", &num);
+    }
+    
+    return num;
+}
+
+/*void seat_delete(seat *u){
+    u->time=-1;
+    u->seat=0;
+    printf("==> 삭제되었습니다!\n");
+    return 0;
+}*/
+
+int selectDataNo2(seat *u[], int count){
+    int no;
+    listScore2(u, count);
+    printf("번호는 (취소 :0)? ");
+    scanf("%d", &no);
+    return no;
+}
+
+void searchName(seat *u[]){
+    int scnt =0;
+    char search[20];
+
+    printf("검색할 이름은 무엇인가요? ");
+    scanf("%s", search);
+
+    printf("\n No 이름  이용시간\n");
+    printf("==========================================================\n");
+    for(int i=0;i<15;i++){
+        if(u[i]==NULL) continue;
+        if(strstr(u[i]->name, search)){
+            printf("%2d ", i+1);
+            readScore(*u[i]);
+            scnt++;
+        }
+    }
+    if(scnt==0) printf("=> 검색된 데이터 없음!");
+    printf("\n");
+}
+
+void timeAdd(){
+
+}
+void orderFood(){
+
+}
+/*void report_seat(){
+
+}
+void event(){
+  
+}
+void file_store(seat *u[], int count){
+
+}
+int file_load(seat *u[]){
+
+}*/
+
+int main(void) {
+  //int menu;->count 꼭 필요할까?
+  int count=0, menu;
+
+    seat *u[15]= {NULL};
+    int index=0;
+
+    //count = file_load(u);
+    //index=count;
+
+    while(1){
+        menu=selectMenu();
+        if(menu==0) break;
+        if(menu==1){
+            seating_sheat(u);
+            printf("몇번 자리를 선택하시겠습니까? ");
+            scanf("%d", &index);
+            u[index]=(seat *)malloc(sizeof(seat));
+            count+=seat_create(u[index]);
+        } 
+        else if (menu==2){ 
+          printf("%d",count);
+            if(count>0) {
+              //seating_sheat(u);
+              listScore2(u, count);
+              }
+            else printf("데이터가 없습니다.\n");
+        }
+        else if (menu==3) {
+            int no= selectDataNo2(u,index);
+            if(no==0){
+                printf("=> 취소됨!\n");
+                continue;
+            }
+                seat_change(u[no-1]);
+        }
+        else if (menu==4) {
+            int no= selectDataNo2(u,index);
+            if(no==0){
+                printf("=> 취소됨!\n");
+                continue;
+            }
+            int deleteok;
+            printf("정말로 삭제하시겠습니까? (삭제 : 1)");
+            scanf("%d", &deleteok);
+            if(deleteok==1){
+                if(u[no-1]) free(u[no-1]);
+                u[no-1] = NULL;
+                count --;
+            } //Delete기능 없이도 가능
+        } else if(menu==5){
+          //이름검색
+            searchName(u);
+        } else if(menu==6){
+          //시간 추가
+            timeAdd();
+        } else if(menu==7){
+          //음식 주문
+            orderFood();
+        } else if(menu==8){
+          //고장난 자리 신고
+            //report_seat();
+        } else if(menu==9){
+          //저장
+            //file_store(u, index);
+        }
+    } 
+  printf("종료되었습니다!\n");
+  return 0; 
+}
+
+*/
