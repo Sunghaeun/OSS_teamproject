@@ -323,47 +323,64 @@ void report_seat(schedule *sp[], int count, int pc_seat[]) {
   printf("고장난 좌석이 신고되었습니다!\n");
 }
 
-void file_store(schedule *sp[], int count) {
-  FILE *fp = fopen("data.txt", "w");
-
+void file_store(schedule *sp[], int count, int pc_seat[]) {
+  FILE *fp = fopen("data.txt", "wt");
   if (fp == NULL) {
     printf("파일을 열 수 없습니다.\n");
     return;
   }
 
+  fprintf(fp, "%d\n", count);  // 스케줄 개수 저장
+
+  // 스케줄 데이터 저장
   for (int i = 0; i < count; i++) {
-    if (sp[i] != NULL) {
-      fprintf(fp, "%s %d %d %d\n", sp[i]->name, sp[i]->time, sp[i]->food,
-              sp[i]->seat);
+    fprintf(fp, "%s %d %d", sp[i]->name, sp[i]->time, sp[i]->seat);
+    for (int j = 0; j < 20; j++) {
+      fprintf(fp, " %d", sp[i]->food[j]);
     }
+    fprintf(fp, "\n");
   }
 
+  // pc_seat 배열 저장
+  for (int i = 0; i < 13; i++) {
+    fprintf(fp, "%d ", pc_seat[i]);
+  }
+  fprintf(fp, "\n");
+
   fclose(fp);
-  printf("데이터가 저장되었습니다.\n");
 }
 
-int file_load(schedule *sp[]) {
-  FILE *fp = fopen("data.txt", "r");
-
+int file_load(schedule *sp[], int *pc_seat) {
+  FILE *fp = fopen("data.txt", "rt");
   if (fp == NULL) {
     printf("파일을 열 수 없습니다.\n");
     return 0;
   }
 
-  int count = 0;
+  int count;
+  fscanf(fp, "%d", &count);  // 스케줄 개수 읽기
 
-  while (!feof(fp)) {
-    sp[count] = (schedule *)malloc(sizeof(schedule));
-    fscanf(fp, "%s %d %d %d", sp[count]->name, &(sp[count]->time),
-           &(sp[count]->food), &(sp[count]->seat));
-    count++;
+  for (int i = 0; i < count; i++) {
+    sp[i] = malloc(sizeof(schedule));
+    //sp[i]->name = malloc(50 * sizeof(char));
+    fscanf(fp, "%s %d %d", sp[i]->name, &(sp[i]->time), &(sp[i]->seat));
+    for (int j = 0; j < 20; j++) {
+      fscanf(fp, "%d", &(sp[i]->food[j]));
+    }
+  }
+
+  // pc_seat 배열 읽기
+  for (int i = 0; i < 13; i++) {
+    fscanf(fp, "%d", &(pc_seat[i]));
   }
 
   fclose(fp);
-  printf("데이터가 로드되었습니다.\n");
-
+  printf("데이터를 로드했습니다.\n");
   return count;
 }
+
+
+
 
 
 int main(void) {
@@ -376,7 +393,7 @@ int main(void) {
 
   int index = 0;
 
-  count = loadData(sp);
+  count = file_load(sp, p_seat);
   index = count;
 
   while (1) {
@@ -428,9 +445,9 @@ int main(void) {
     } else if (menu == 7) {
       orderFood(sp, count, pc_seat);
     } else if (menu == 8) {
-      report_seat(sp, count, pc_seat);
+      report_seat(sp, count, p_seat);
     } else if (menu == 9) {
-      saveData(sp, count);
+      file_store(sp, count, pc_seat);
     }
   }
   printf("종료됨!\n");
