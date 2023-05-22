@@ -101,20 +101,28 @@ void seating_sheet(schedule *u[]) {
 }
  
 int addScore(schedule *s, int pc_seat[]) {
-  do{
-    printf("몇번 자리를 선택하시겠습니까? ");
-    scanf("%d", &s->seat);
+  do {
+    printf("몇 번 자리를 선택하시겠습니까? ");
+    scanf("%d", &(s->seat));
     for (int i = 0; i < 15; i++) {
-      if (s[i]->seat == choice) {
+      if (pc_seat[i] == s->seat) {
         printf("이미 선택된 좌석입니다!\n");
         break;
       }
-    if (pc_seat[s->seat - 1] != 0||) {
-    printf("그 자리는 선택 불가능합니다.\n");
-    continue;
     }
-    }while
+    if (pc_seat[s->seat - 1] != 0) {
+      printf("그 자리는 선택 불가능합니다.\n");
+      continue;
+    }
+  } while (pc_seat[s->seat - 1] != 0);
+
+  printf("\n이름은? ");
+  scanf("%s", s->name);
+  printf("시간은? ");
+  scanf("%d", &(s->time));
+  return 1;
 }
+
 
   
   printf("\n이름은? ");
