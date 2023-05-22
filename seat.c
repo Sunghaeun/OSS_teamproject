@@ -2,21 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*
-typedef struct{
-  char name[20];
-  int time;
-  int seat;
-  char food[20];
-  //좋아하는 게임 장르나 나이를 입력 받아서 10시 이후까지 이용 예정이라면 금지
-메세지 띄우기 }user;
-*/
 typedef struct {
   char name[20];
   int time;
   int food;
   int seat;
 } seat;
+int foodMenu();
 
 void seating_sheat(seat u) {
   int seat_n = 0;
@@ -90,7 +82,7 @@ void seating_sheat(seat u) {
 
 int seat_create(seat *u) {
   printf("이름을 입력하세요. ");
-  scanf("%s", &u->name);
+  scanf("%s", u->name);
 
   printf("이용시간을 입력하세요. ");
   scanf("%d", &u->time);
@@ -121,7 +113,7 @@ int selectDataNo2(seat *u[], int count) {
 }
 void seat_change(seat *u) {
   printf("이름을 입력하세요. ");
-  scanf("%s", &u->name);
+  scanf("%s", u->name);
 
   printf("이용시간을 입력하세요. ");
   scanf("%d", &u->time);
@@ -132,7 +124,6 @@ void seat_change(seat *u) {
 void seat_delete(seat *u) {
   u->time = -1;
   printf("==> 삭제되었습니다!\n");
-  return 0;
 }
 
 void searchName(seat *u[], int count) {
@@ -179,13 +170,18 @@ void timeAdd(seat *u[], int count) {
 int foodmenu() {
   int num;
 
-  printf("*******oss피시방*******\n");
-  printf("1. 로그인C\n");
-  printf("2. 남은자리R\n");
-  printf("3. 자리이동U\n");
-  printf("4. 로그아웃D\n");
-  printf("5. 이름검색\n");
-  printf("6. 시간 추가\n");
+  printf("*******oss피시방음식*******\n");
+  printf("1. 라면 - 4000원\n");
+  printf("2. 짜장면 - 4000원\n");
+  printf("3. 짬뽕 - 4000원\n");
+  printf("4. 볶음밥 - 4000원\n");
+  printf("원하는 번호는? ");
+  scanf("%d", &num);
+
+  while (num < 1 || num > 4) {
+    printf("다시 입력하세요> ");
+    scanf("%d", &num);
+  }
 
   return num;
 }
@@ -207,7 +203,21 @@ void orderFood(seat *u[], int count) {
   printf("음식이 주문되었습니다!\n");
 }
 
-void report_seat() {}
+void report_seat(seat *u[], int count) {
+  int seatNo;
+  printf("고장난 좌석의 번호를 입력하세요: ");
+  scanf("%d", &seatNo);
+
+  if (seatNo < 1 || seatNo > count || u[seatNo - 1] == NULL) {
+    printf("잘못된 좌석 번호입니다. 다시 입력하세요.\n");
+    return;
+  }
+
+  u[seatNo - 1]->seat = -1;
+
+  printf("고장난 좌석이 신고되었습니다!\n");
+}
+
 void event() {}
 void file_store(seat *u[], int count) {}
 int file_load(seat *u[]) {}
