@@ -128,9 +128,28 @@ void seat_delete(user *u){
     return 0;
 }
 
-void searchName(){
+void searchName(user *u[], int count) {
+  char name[20];
+  printf("찾으시는 사용자의 이름을 입력하세요: ");
+  scanf("%s", name);
 
+  int found = 0;
+  printf("\n No 이름  이용시간\n");
+  printf("==========================================================\n");
+  for (int i = 0; i < count; i++) {
+    if (u[i] != NULL && strcmp(u[i]->name, name) == 0) {
+      printf("%2d ", i + 1);
+      seat_read(u[i]);
+      found = 1;
+    }
+  }
+  printf("\n");
+
+  if (!found) {
+    printf("일치하는 사용자를 찾을 수 없습니다.\n");
+  }
 }
+
 void timeAdd(){
 }
 void orderFood(){
