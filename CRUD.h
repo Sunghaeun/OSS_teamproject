@@ -8,9 +8,11 @@ typedef struct {
   int food[20];
 } schedule;
 
-void seat_create(user *u);
-void seat_read(user u);
-void listScore2(user *u[], int count);
+int addScore(schedule *s, int pc_seat[]);
+void readScore(schedule s);
+void listScore2(schedule *s[], int count);
+void listScore3(int pc_seat[]);
 int selectDataNo2(user *u[], int count);
-void seat_change(user *u);
+void updateScore(schedule *s[], int index);
+int deleteScore(schedule *s);
 void seat_delete(user *u);
