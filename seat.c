@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
 typedef struct{
   char name[20];
   int time;
@@ -9,7 +10,7 @@ typedef struct{
   char food[20];
   //좋아하는 게임 장르나 나이를 입력 받아서 10시 이후까지 이용 예정이라면 금지 메세지 띄우기
 }user;
-
+*/
 typedef struct{
   char name[20];
   int time;
@@ -169,8 +170,23 @@ void timeAdd(user *u[], int count) {
   printf("이용시간이 추가되었습니다!\n");
 }
 
-void orderFood(){
+void orderFood(user *u[], int count) {
+  int seatNo;
+  printf("음식을 주문할 사용자의 좌석 번호를 입력하세요: ");
+  scanf("%d", &seatNo);
+
+  if (seatNo < 1 || seatNo > count || u[seatNo - 1] == NULL) {
+    printf("잘못된 좌석 번호입니다. 다시 입력하세요.\n");
+    return;
+  }
+  
+  int food = foodMenu();
+  
+  u[seatNo - 1]->food = food
+
+  printf("음식이 주문되었습니다!\n");
 }
+
 void report_seat(){
 }
 void event(){
