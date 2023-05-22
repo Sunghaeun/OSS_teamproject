@@ -289,14 +289,14 @@ void timeAdd(schedule *u) {
   return num;
 }
 
-void orderFood(schedule *sp[], int count) {
+void orderFood(schedule *sp[], int count, int pc_seat[]) {
   int seatNo;
   printf("음식을 주문할 사용자의 좌석 번호를 입력하세요: ");
   scanf("%d", &seatNo);
 
-  if (seatNo < 1 || seatNo > count || sp[seatNo - 1] == NULL) {
+  if (seatNo < 1 || seatNo > 13 || pc_seat[seatNo-1]!=0) {
     printf("잘못된 좌석 번호입니다. 다시 입력하세요.\n");
-    return;
+    scanf("%d", &seatNo);
   }
 
   int food = foodMenu();
@@ -426,7 +426,7 @@ int main(void) {
       }
       timeAdd(sp[no - 1]);
     } else if (menu == 7) {
-      orderFood(sp, count);
+      orderFood(sp, count, pc_seat);
     } else if (menu == 8) {
       report_seat(sp, count, pc_seat);
     } else if (menu == 9) {
