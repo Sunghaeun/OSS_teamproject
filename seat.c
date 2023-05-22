@@ -14,7 +14,7 @@ typedef struct{
 typedef struct{
   char name[20];
   int time;
-  char food[20];
+  int food;
   int yn;
 }seat;
 
