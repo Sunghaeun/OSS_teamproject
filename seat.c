@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct {
   char name[20];
@@ -8,7 +9,6 @@ typedef struct {
   int food;
   int seat;
 } seat;
-int foodMenu();
 
 void seating_sheat(seat u) {
   int seat_n = 0;
@@ -81,13 +81,19 @@ void seating_sheat(seat u) {
 }
 
 int seat_create(seat *u) {
+
   printf("이름을 입력하세요. ");
   scanf("%s", u->name);
 
-  printf("이용시간을 입력하세요. ");
+  printf("이용시간을 입력하세요. (분)");
   scanf("%d", &u->time);
 
-  printf("==> 추가되었습니다!\n");
+  if (u->time > 180) {
+    int event_time = event();
+    u->time += event_time;
+  }
+
+  printf("==> 총 %d분추가되었습니다!\n", u->time);
   return 1;
 }
 
@@ -167,7 +173,7 @@ void timeAdd(seat *u[], int count) {
   printf("이용시간이 추가되었습니다!\n");
 }
 
-int foodmenu() {
+int foodMenu() {
   int num;
 
   printf("*******oss피시방음식*******\n");
@@ -208,7 +214,8 @@ void report_seat(seat *u[], int count) {
   printf("고장난 좌석의 번호를 입력하세요: ");
   scanf("%d", &seatNo);
 
-  if (seatNo < 1 || seatNo > count || u[seatNo - 1] == NULL) {
+  if (seatNo < 1 || seatNo > count || u[seatNo - 1] == NULL ||
+      u[seatNo - 1]->seat == -1) {
     printf("잘못된 좌석 번호입니다. 다시 입력하세요.\n");
     return;
   }
@@ -218,9 +225,70 @@ void report_seat(seat *u[], int count) {
   printf("고장난 좌석이 신고되었습니다!\n");
 }
 
-void event() {}
-void file_store(seat *u[], int count) {}
-int file_load(seat *u[]) {}
+int event() {
+  int answer;
+  int guess;
+  int event_time = 0;
+
+  srand(time(NULL));
+
+  answer = rand() % 3 + 1;
+
+  printf("1, 2, 3 중 하나의 숫자를 선택하세요: ");
+  scanf("%d", &guess);
+
+  if (guess == answer) {
+    printf("정답!\n");
+    printf("30분 추가~!");
+    event_time += 30;
+  } else {
+    printf("실패ㅠㅠ\n");
+  }
+
+  return event_time;
+}
+void file_store(seat *u[], int count) {
+  FILE *fp = fopen("data.txt", "w");
+
+  if (fp == NULL) {
+    printf("파일을 열 수 없습니다.\n");
+    return;
+  }
+
+  for (int i = 0; i < count; i++) {
+    if (u[i] != NULL) {
+      fprintf(fp, "%s %d %d %d\n", u[i]->name, u[i]->time, u[i]->food,
+              u[i]->seat);
+    }
+  }
+
+  fclose(fp);
+  printf("데이터가 저장되었습니다.\n");
+}
+
+int file_load(seat *u[]) {
+  FILE *fp = fopen("data.txt", "r");
+
+  if (fp == NULL) {
+    printf("파일을 열 수 없습니다.\n");
+    return 0;
+  }
+
+  int count = 0;
+
+  while (!feof(fp)) {
+    u[count] = (seat *)malloc(sizeof(seat));
+    fscanf(fp, "%s %d %d %d", u[count]->name, &(u[count]->time),
+           &(u[count]->food), &(u[count]->seat));
+    count++;
+  }
+
+  fclose(fp);
+  printf("데이터가 로드되었습니다.\n");
+
+  return count;
+}
+
 int selectMenu() {
   int num;
 
@@ -252,7 +320,7 @@ int selectMenu() {
 int main(void) {
   int count = 0, menu;
 
-  seat *u[100];
+  seat *u[13];
   int index = 0;
 
   // count = file_load(u);
@@ -264,6 +332,8 @@ int main(void) {
       break;
     if (menu == 1) {
       // u[index]=(user *)malloc(sizeof(user));
+      printf("사용하실 좌석을 입력하세요. ");
+      // scanf("%d", &index);
       seating_sheat(*u[index]);
       count += seat_create(u[index++]);
     } else if (menu == 2) {
