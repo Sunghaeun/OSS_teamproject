@@ -150,8 +150,25 @@ void searchName(user *u[], int count) {
   }
 }
 
-void timeAdd(){
+void timeAdd(user *u[], int count) {
+  int seatNo;
+  printf("이용시간을 추가할 사용자의 좌석 번호를 입력하세요: ");
+  scanf("%d", &seatNo);
+
+  if (seatNo < 1 || seatNo > count || u[seatNo - 1] == NULL) {
+    printf("잘못된 좌석 번호입니다. 다시 입력하세요.\n");
+    return;
+  }
+
+  int additionalTime;
+  printf("추가할 이용시간을 입력하세요: ");
+  scanf("%d", &additionalTime);
+
+  u[seatNo - 1]->time += additionalTime;
+
+  printf("이용시간이 추가되었습니다!\n");
 }
+
 void orderFood(){
 }
 void report_seat(){
