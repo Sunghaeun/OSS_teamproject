@@ -2,6 +2,29 @@
 #include "other.h"
 #include "menu.h"
 
+int event() {
+  int answer;
+  int guess;
+  int event_time = 0;
+
+  srand(time(NULL));
+
+  answer = rand() % 3 + 1;
+
+  printf("1, 2, 3 중 하나의 숫자를 선택하세요: ");
+  scanf("%d", &guess);
+
+  if (guess == answer) {
+    printf("정답!\n");
+    printf("30분 추가~!");
+    event_time += 30;
+  } else {
+    printf("실패ㅠㅠ\n");
+  }
+
+  return event_time;
+}
+
 void searchFriend(schedule *s[], int count) {
   int scnt = 0;
   char search[20];
