@@ -1,8 +1,8 @@
 //other의 헤더
-void searchName();
-void timeAdd();
-void orderFood();
-void report_seat();
-void event();
-void file_store();
-int file_import();
+int event();
+void searchFriend(schedule *s[], int count);
+void timeAdd(schedule *u);
+void timeAdd(schedule *u);
+void report_seat(schedule *sp[], int count, int pc_seat[]);
+void file_store(schedule *sp[], int count, int pc_seat[]);
+int file_load(schedule *sp[], int *pc_seat);
