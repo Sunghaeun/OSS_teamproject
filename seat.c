@@ -290,13 +290,13 @@ int main(void) {
       searchName(u, index);
     } else if (menu == 6) {
       //시간 추가
-      timeAdd();
+      timeAdd(u, index);
     } else if (menu == 7) {
       //음식 주문
-      orderFood();
+      orderFood(u, index);
     } else if (menu == 8) {
       //고장난 자리 신고
-      report_seat();
+      report_seat(u, index);
     } else if (menu == 9) {
       //저장
       file_store(u, index);
