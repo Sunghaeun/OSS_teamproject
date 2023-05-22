@@ -412,10 +412,7 @@ void seating_sheet(schedule *u[]) {
       printf("|");
     if (i % 5 == 3) {
       seat_n++;
-      if (u[seat_n] != NULL)
-        printf("%d", seat_n);
-      else
-        printf("X");
+      printf("%d", seat_n);
     }
     printf(" ");
   }
@@ -432,10 +429,8 @@ void seating_sheet(schedule *u[]) {
         printf("|");
       if (i % 5 == 3) {
         seat_n++;
-        if (u[seat_n - 1] != NULL)
-          printf("X");
-        else
-          printf("%d", seat_n);
+        
+        printf("%d", seat_n);
       }
       printf(" ");
     }
@@ -450,9 +445,7 @@ void seating_sheet(schedule *u[]) {
       printf("|");
     if (i % 5 == 3) {
       seat_n++;
-      if (u[seat_n - 1] != NULL)
-        printf("X");
-      else
+      
         printf("%d", seat_n);
     }
     printf(" ");
@@ -470,9 +463,7 @@ void seating_sheet(schedule *u[]) {
       printf("|");
     if (i % 5 == 2) {
       seat_n++;
-      if (u[seat_n - 1] != NULL)
-        printf("X");
-      else
+      
         printf("%d", seat_n);
     } else
       printf(" ");
