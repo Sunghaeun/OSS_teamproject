@@ -15,7 +15,7 @@ typedef struct {
   char name[20];
   int time;
   int food;
-  int yn;
+  int seat;
 } seat;
 
 void seating_sheat(seat u) {
