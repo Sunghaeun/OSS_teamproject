@@ -8,7 +8,6 @@ int event() {
   int event_time = 0;
 
   srand(time(NULL));
-
   answer = rand() % 3 + 1;
 
   printf("1, 2, 3 중 하나의 숫자를 선택하세요: ");
