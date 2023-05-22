@@ -15,4 +15,3 @@ void listScore3(int pc_seat[]);
 int selectDataNo2(user *u[], int count);
 void updateScore(schedule *s[], int index);
 int deleteScore(schedule *s);
-void seat_delete(user *u);
