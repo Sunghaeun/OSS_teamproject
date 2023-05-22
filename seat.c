@@ -390,12 +390,13 @@ int main(void) {
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct {
   char name[8];
   int time;
   int seat;
-  char food[20];
+  int food[20];
 } schedule;
 
 void seating_sheet(schedule *u[]) {
@@ -481,6 +482,28 @@ void seating_sheet(schedule *u[]) {
     printf("-");
   }
   printf("\n");
+}
+int event() {
+  int answer;
+  int guess;
+  int event_time = 0;
+
+  srand(time(NULL));
+
+  answer = rand() % 3 + 1;
+
+  printf("1, 2, 3 중 하나의 숫자를 선택하세요: ");
+  scanf("%d", &guess);
+
+  if (guess == answer) {
+    printf("정답!\n");
+    printf("30분 추가~!");
+    event_time += 30;
+  } else {
+    printf("실패ㅠㅠ\n");
+  }
+
+  return event_time;
 }
 
 int addScore(schedule *s) {
@@ -621,10 +644,103 @@ void timeAdd(schedule *u) {
   u->time += p_time;
 
   printf("==> 추가되었습니다!\n");
+}int foodMenu() {
+  int num;
+
+  printf("*******oss피시방음식*******\n");
+  printf("1. 라면 - 4000원\n");
+  printf("2. 짜장면 - 4000원\n");
+  printf("3. 짬뽕 - 4000원\n");
+  printf("4. 볶음밥 - 4000원\n");
+  printf("원하는 번호는? ");
+  scanf("%d", &num);
+
+  while (num < 1 || num > 4) {
+    printf("다시 입력하세요> ");
+    scanf("%d", &num);
+  }
+
+  return num;
 }
 
-void orderFood() {}
-void report_seat() {}
+void orderFood(schedule *sp[], int count) {
+  int seatNo;
+  printf("음식을 주문할 사용자의 좌석 번호를 입력하세요: ");
+  scanf("%d", &seatNo);
+
+  if (seatNo < 1 || seatNo > count || sp[seatNo - 1] == NULL) {
+    printf("잘못된 좌석 번호입니다. 다시 입력하세요.\n");
+    return;
+  }
+
+  int food = foodMenu();
+
+  for (int i = 0; i < 20; i++) {
+    sp[seatNo - 1]->food[i] = (i == food - 1) ? 1 : 0;
+  }
+
+  printf("음식이 주문되었습니다!\n");
+}
+
+
+void report_seat(schedule *sp[], int count) {
+  int seatNo;
+  printf("고장난 좌석의 번호를 입력하세요: ");
+  scanf("%d", &seatNo);
+
+  if (seatNo < 1 || seatNo > count || sp[seatNo - 1] == NULL ||
+      sp[seatNo - 1]->seat == -1) {
+    printf("잘못된 좌석 번호입니다. 다시 입력하세요.\n");
+    return;
+  }
+
+  sp[seatNo - 1]->seat = -1;
+
+  printf("고장난 좌석이 신고되었습니다!\n");
+}
+
+void file_store(schedule *sp[], int count) {
+  FILE *fp = fopen("data.txt", "w");
+
+  if (fp == NULL) {
+    printf("파일을 열 수 없습니다.\n");
+    return;
+  }
+
+  for (int i = 0; i < count; i++) {
+    if (sp[i] != NULL) {
+      fprintf(fp, "%s %d %d %d\n", sp[i]->name, sp[i]->time, sp[i]->food,
+              sp[i]->seat);
+    }
+  }
+
+  fclose(fp);
+  printf("데이터가 저장되었습니다.\n");
+}
+
+int file_load(schedule *sp[]) {
+  FILE *fp = fopen("data.txt", "r");
+
+  if (fp == NULL) {
+    printf("파일을 열 수 없습니다.\n");
+    return 0;
+  }
+
+  int count = 0;
+
+  while (!feof(fp)) {
+    sp[count] = (schedule *)malloc(sizeof(schedule));
+    fscanf(fp, "%s %d %d %d", sp[count]->name, &(sp[count]->time),
+           &(sp[count]->food), &(sp[count]->seat));
+    count++;
+  }
+
+  fclose(fp);
+  printf("데이터가 로드되었습니다.\n");
+
+  return count;
+}
+
 
 int main(void) {
   int result = 0;
@@ -682,9 +798,9 @@ int main(void) {
       }
       timeAdd(sp[no - 1]);
     } else if (menu == 7) {
-      orderFood();
+      orderFood(sp, count);
     } else if (menu == 8) {
-      report_seat();
+      report_seat(sp, count);
     } else if (menu == 9) {
       saveData(sp, count);
     }
