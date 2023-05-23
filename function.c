@@ -125,7 +125,8 @@ int addScore(schedule *s, int pc_seat[]) {
   printf("시간은?(분) ");
   scanf("%d", &(s->time));
   
-  if(time>180)    s->time += event();
+  if(s->time>180)    s->time += event();
+  s->food = 0;
   
   return 1;
 }
@@ -239,9 +240,8 @@ void orderFood(schedule *sp[], int count, int pc_seat[]) {
 
   int food = foodMenu();
 
-  for (int i = 0; i < 20; i++) {
-    sp[seatNo - 1]->food[i] = (i == food - 1) ? 1 : 0;
-  }
+  sp[seatNo - 1]->food;
+  
 
   printf("음식이 주문되었습니다!\n");
 }
@@ -273,9 +273,9 @@ void file_store(schedule *sp[], int count, int pc_seat[]) {
   // 스케줄 데이터 저장
   for (int i = 0; i < count; i++) {
     fprintf(fp, "%s %d %d", sp[i]->name, sp[i]->time, sp[i]->seat);
-    for (int j = 0; j < 20; j++) {
-      fprintf(fp, " %d", sp[i]->food[j]);
-    }
+    //for (int j = 0; j < 20; j++) {
+      fprintf(fp, " %d", sp[i]->food);
+    //}
     fprintf(fp, "\n");
   }
 
@@ -303,7 +303,7 @@ int file_load(schedule *sp[], int *pc_seat) {
     //sp[i]->name = malloc(50 * sizeof(char));
     fscanf(fp, "%s %d %d", sp[i]->name, &(sp[i]->time), &(sp[i]->seat));
     for (int j = 0; j < 20; j++) {
-      fscanf(fp, "%d", &(sp[i]->food[j]));
+      fscanf(fp, "%d", &(sp[i]->food));
     }
   }
 
