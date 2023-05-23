@@ -15,7 +15,7 @@ int addScore(schedule *s, int pc_seat[]);
 void readScore(schedule s);
 void listScore2(schedule *s[], int count);
 void listScore3(int pc_seat[]);
-int selectDataNo2(user *u[], int count);
+int selectDataNo2(schedule *u[], int count);
 void updateScore(schedule *s[], int index);
 int deleteScore(schedule *s);
 int event();
