@@ -26,3 +26,4 @@ void report_seat(schedule *sp[], int count, int pc_seat[]);
 void file_store(schedule *sp[], int count, int pc_seat[]);
 int file_load(schedule *sp[], int *pc_seat);
 int foodMenu();
+
