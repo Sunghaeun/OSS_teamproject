@@ -21,21 +21,3 @@ int selectMenu() {
   return menu;
 }
 
-int foodMenu() {
-  int num;
-
-  printf("*******oss피시방음식*******\n");
-  printf("1. 라면 - 4000원\n");
-  printf("2. 짜장면 - 4000원\n");
-  printf("3. 짬뽕 - 4000원\n");
-  printf("4. 볶음밥 - 4000원\n");
-  printf("원하는 번호는? ");
-  scanf("%d", &num);
-
-  while (num < 1 || num > 4) {
-    printf("다시 입력하세요> ");
-    scanf("%d", &num);
-  }
-
-  return num;
-}
